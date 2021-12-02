@@ -30,5 +30,5 @@ io.on('connection', (socket) => {
     //send back the message to the socket that sent it
     socket.on('sendToMe', (message) => {
         socket.emit('displayMessage', (message));
-    });
+    })
 });
