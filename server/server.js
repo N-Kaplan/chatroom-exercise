@@ -15,7 +15,6 @@ server.listen(8080, () => {
 const io = require('socket.io')(server); //io variable is now the entry point of all sockets connected to the server
 
 //verify connection
-
 let counter = 0;
 
 io.on('connection', (socket) => {
@@ -26,5 +25,10 @@ io.on('connection', (socket) => {
     //an observer that waits until the message "sendToAll" gets passed to the server
     socket.on('sendToAll', (message) =>{
         io.emit("displayMessage", (message));
+    });
+
+    //send back the message to the socket that sent it
+    socket.on('sendToMe', (message) => {
+        socket.emit('displayMessage', (message));
     });
 });
