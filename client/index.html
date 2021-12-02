@@ -7,6 +7,13 @@
 </head>
 <body>
 
+<label for="message">Message: </label><br>
+<input id="message" name="message" type="text"><br>
+<button id="sendToAll" type="submit">Send To All</button><br>
+<button id="sendToOne" type="submit">Private Message</button><br>
+<div id="target"></div>
+
+
 <!--adds connection to socket.io-->
 <script src="/socket.io/socket.io.js"></script>
 <script src="script.js"></script>

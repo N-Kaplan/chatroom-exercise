@@ -21,4 +21,10 @@ let counter = 0;
 io.on('connection', (socket) => {
     counter++;
     console.log(counter + ' someone connected');
+
+    //react to received 'sendToAll' call from client by creating
+    //an observer that waits until the message "sendToAll" gets passed to the server
+    socket.on('sendToAll', (message) =>{
+        io.emit("displayMessage", (message));
+    });
 });
