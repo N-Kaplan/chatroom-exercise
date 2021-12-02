@@ -16,10 +16,15 @@ const io = require('socket.io')(server); //io variable is now the entry point of
 
 //verify connection
 let counter = 0;
+//keep track of users
+let users = [];
 
 io.on('connection', (socket) => {
     counter++;
     console.log(counter + ' someone connected');
+    //keep track of users
+    users.push(socket.username);
+    io.emit('users', users);
 
     //react to received 'sendToAll' call from client by creating
     //an observer that waits until the message "sendToAll" gets passed to the server
