@@ -16,24 +16,30 @@ message.addEventListener('keyup', () => {
     }
 })
 
+//send username to server
+window.addEventListener('load', () => {
+    socket.emit('user', user);
+})
+
 //send message to server
 btnAll.addEventListener('click', () => {
-    //console.log(message.value);
-    socket.emit('sendToAll', (user + ': ' + message.value))
+    // console.log(user);
+    // console.log(message.value);
+    socket.emit('sendToAll', user, message.value)
     });
 //send message to yourself (through server)
 btnMe.addEventListener('click', () => {
     //console.log(message.value);
-    socket.emit('sendToMe', ('you: ' + message.value))
+    socket.emit('sendToMe', user, message.value)
 });
 
 //client receives message back from the server
-socket.on('displayMessage', (message) => {
+socket.on('displayMessage', (data) => {
     target.innerHTML += '<br>';
-    target.innerText += message;
+    target.innerText += (data.user === user) ? 'you sent: ' + data.message : data.user + ' sent: ' + data.message;
 });
 
-//store username
+//get users from server
 socket.on('users', (users) => {
     console.log(users)
 });
