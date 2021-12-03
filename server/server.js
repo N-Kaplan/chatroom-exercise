@@ -32,6 +32,12 @@ io.on('connection', (socket, user) => {
         io.emit('users', users);
     });
 
+    socket.on('disconnect', () => {
+        users = users.filter(({id}) => id !== socket.id);
+        console.log(users);
+        io.emit('users', users);
+    });
+
     //react to received 'sendToAll' call from client by creating
     //an observer that waits until the message "sendToAll" gets passed to the server
     socket.on('sendToAll', (user, message) =>{

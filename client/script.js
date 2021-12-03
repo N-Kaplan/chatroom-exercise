@@ -42,8 +42,12 @@ socket.on('displayMessage', (data) => {
 //get users from server
 socket.on('users', (users) => {
     console.log(users)
+    let currentUsers = users;
     const ul = document.getElementById('usersList');
-    for (let i=0;  i< users.length; i++) {
+    while (ul.lastChild) {
+        ul.removeChild(ul.lastChild);
+    }
+    for (let i=0;  i< currentUsers.length; i++) {
         const li = document.createElement('li');
         li.innerText = users[i].username;
         ul.appendChild(li);
