@@ -42,4 +42,10 @@ socket.on('displayMessage', (data) => {
 //get users from server
 socket.on('users', (users) => {
     console.log(users)
+    const ul = document.getElementById('usersList');
+    for (let i=0;  i< users.length; i++) {
+        const li = document.createElement('li');
+        li.innerText = users[i].username;
+        ul.appendChild(li);
+    }
 });
