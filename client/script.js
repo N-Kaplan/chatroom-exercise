@@ -25,18 +25,20 @@ window.addEventListener('load', () => {
 btnAll.addEventListener('click', () => {
     // console.log(user);
     // console.log(message.value);
-    socket.emit('sendToAll', user, message.value)
+    const timestamp = new Date().toLocaleString();
+    socket.emit('sendToAll', user, message.value, timestamp)
     });
 //send message to yourself (through server)
 btnMe.addEventListener('click', () => {
     //console.log(message.value);
-    socket.emit('sendToMe', user, message.value)
+    const timestamp = new Date().toLocaleString();
+    socket.emit('sendToMe', user, message.value, timestamp)
 });
 
 //client receives message back from the server
 socket.on('displayMessage', (data) => {
     target.innerHTML += '<br>';
-    target.innerText += (data.user === user) ? 'you sent: ' + data.message : data.user + ' sent: ' + data.message;
+    target.innerText += (data.user === user) ? 'At ' + data.timestamp + ' you sent: ' + data.message : 'At ' + data.timestamp + ' ' +data.user + ' sent: ' + data.message;
 });
 
 //get users from server
@@ -53,3 +55,9 @@ socket.on('users', (users) => {
         ul.appendChild(li);
     }
 });
+
+// document.querySelector('ul').addEventListener('click', function(e) {
+//     if (e.target.tagName.toLowerCase() === 'li') {
+//         console.log(e.target);
+//     }
+// });

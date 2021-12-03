@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+body {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("resources/bg.webp");
+    background-size: cover;
+}
+
+.flex-grid {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#input {
+    flex: 3;
+}
+
+#users {
+    flex: 1;
+    border: 1px solid white;
+    margin: 10px;
+    align-items: center;
+}
+
+
+#target {
+    border: 1px solid white;
+    min-height: 20px;
+}

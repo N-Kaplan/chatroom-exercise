@@ -40,12 +40,12 @@ io.on('connection', (socket, user) => {
 
     //react to received 'sendToAll' call from client by creating
     //an observer that waits until the message "sendToAll" gets passed to the server
-    socket.on('sendToAll', (user, message) =>{
-        io.emit("displayMessage", {'user': user, 'message': message});
+    socket.on('sendToAll', (user, message, timestamp) =>{
+        io.emit("displayMessage", {'user': user, 'message': message, 'timestamp': timestamp});
     });
 
     //send back the message to the socket that sent it
-    socket.on('sendToMe', (user, message) => {
-        socket.emit('displayMessage', {'user': user, 'message': message});
+    socket.on('sendToMe', (user, message, timestamp) => {
+        socket.emit('displayMessage', {'user': user, 'message': message, 'timestamp': timestamp});
     });
 });
